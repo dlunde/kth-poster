@@ -1,0 +1,102 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{kthposter}
+
+% Pass any options to beamerposter
+\DeclareOption*{%
+  \PassOptionsToPackage{\CurrentOption}{beamerposter}
+}
+
+\ProcessOptions\relax
+
+\RequirePackage{beamerposter}
+
+\RequirePackage{tikz}
+
+\geometry{%
+  hmargin=35.7mm
+}
+
+\definecolor{blue}{RGB}{25,84,166}
+\definecolor{lgray}{RGB}{240,240,240}
+
+\setbeamercolor*{block body}{fg=black,bg=lgray}
+\setbeamercolor*{block title}{fg=white,bg=blue}
+\setbeamercolor*{footline}{fg=white}
+\setbeamerfont{block title}{size=\large,series=\bfseries}
+
+\setbeamertemplate{navigation symbols}{}
+
+\setbeamertemplate{block begin}{%
+  \begin{minipage}[b][][t]{\linewidth}
+    \begin{beamercolorbox}[colsep*=1cm]{block title}
+      \centering
+      \usebeamerfont*{block title}%
+      \raisebox{0pt}[\height][0pt]{\vphantom{dp}\insertblocktitle}
+    \end{beamercolorbox}%
+    {\parskip0pt\par}%
+    \ifbeamercolorempty[bg]{block title}
+    {}
+    {\ifbeamercolorempty[bg]{block body}{}{\nointerlineskip\vskip-0.5pt}}%
+    \usebeamerfont{block body}%
+    \begin{beamercolorbox}[colsep*=1cm, vmode]{block body}%
+      \ifbeamercolorempty[bg]{block body}{\vskip-.25ex}{\vskip-.75ex}\vbox{}%
+}
+\setbeamertemplate{block end}
+{\end{beamercolorbox}\end{minipage}}
+
+\newcommand\logoLeft[1]{\renewcommand\@logoLeft{#1}}\newcommand\@logoLeft{}
+\newcommand\logoRight[1]{\renewcommand\@logoRight{#1}}\newcommand\@logoRight{}
+
+\setbeamertemplate{headline}{
+  \hspace{24mm}
+  \begin{minipage}[b][17cm][t]{0.10\paperwidth}
+    \vspace{25mm}
+    \@logoLeft
+  \end{minipage}
+  \begin{minipage}[b][17cm][t]{0.732\paperwidth}
+    \vspace{25mm}
+    \begin{beamercolorbox}[center]{title in headline}
+      \usebeamerfont{title in headline}
+      \Huge
+      \bfseries
+      \setlength\lineskip{1cm}
+      \inserttitle
+    \end{beamercolorbox}%
+
+    \vspace{11mm}
+    \begin{beamercolorbox}[center]{author in headline}
+      \usebeamerfont{author in headline}
+      \Large
+      \insertauthor
+    \end{beamercolorbox}%
+
+    \vspace{10mm}
+    \begin{beamercolorbox}[center]{institute in headline}
+      \usebeamerfont{institute in headline}
+      \large
+      \insertinstitute
+    \end{beamercolorbox}%
+  \end{minipage}
+  \begin{minipage}[b][17cm][t]{0.10\paperwidth}
+    \vspace{25mm}
+    \hfill
+    \@logoRight
+  \end{minipage}
+  \hspace{24mm}
+}
+
+\newcommand\footline[1]{\renewcommand\@footline{#1}}\newcommand\@footline{}
+
+\setbeamertemplate{footline}{%
+  \tikz[remember picture,overlay]%
+  \node[inner sep=0cm, anchor=south]%
+  at (current page.south)%
+  {\includegraphics [width=\paperwidth, trim={16cm 0 16cm 0cm}, clip]{footline}};
+  \begin{beamercolorbox}[right]{footline}
+    \normalsize
+    \@footline
+    \hspace{4mm}
+    \vspace{1cm}
+  \end{beamercolorbox}
+}
+
