@@ -21,7 +21,7 @@
 
 \setbeamercolor*{block body}{fg=black,bg=lgray}
 \setbeamercolor*{block title}{fg=white,bg=blue}
-\setbeamercolor*{footline}{fg=white}
+\setbeamercolor*{footline}{fg=gray}
 \setbeamerfont{block title}{size=\large,series=\bfseries}
 
 \setbeamertemplate{navigation symbols}{}
@@ -89,11 +89,16 @@
 \newcommand\footline[1]{\renewcommand\@footline{#1}}\newcommand\@footline{}
 
 \setbeamertemplate{footline}{%
-  \tikz[remember picture,overlay]%
-  \node[inner sep=0cm, anchor=south]%
-  at (current page.south)%
-  {\includegraphics [width=\paperwidth, trim={16cm 0 16cm 0cm}, clip]{footline}};
-  \begin{beamercolorbox}[sep=1cm,right]{footline}
+%  \tikz[remember picture,overlay]%
+%  \node[inner sep=0cm, anchor=south]%
+%  at (current page.south)%
+%  {\includegraphics [width=\paperwidth, trim={16cm 0 16cm 0cm}, clip]{footline}};
+  \begin{center}
+    \tikz
+    \draw[line width=1mm,color=blue,yshift=0cm] (0.03\paperwidth,0) -- (0.97\paperwidth,0);
+  \end{center}
+  \vspace{-2.5cm}
+  \begin{beamercolorbox}[sep=2.5cm]{footline}
     \normalsize
     \@footline
   \end{beamercolorbox}
