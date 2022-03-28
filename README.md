@@ -1,5 +1,5 @@
 # kth-poster
-A KTH-themed LaTeX poster template based on beamerposter.
+A KTH-themed LaTeX poster template/example based on beamerposter.
 
 ## Usage
 See `example.tex`.
